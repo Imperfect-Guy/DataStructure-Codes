@@ -35,14 +35,18 @@ public class LLDemo {
 	
 	public static void main(String[]args) {
 		Scanner sc=new Scanner(System.in);
+		
 		System.out.println("Enter nodes: ");
 		int n=sc.nextInt();
+		
 		System.out.println("Enter 1st Node value: ");
 		int data=sc.nextInt();
+		
 		LLDemo obj=new LLDemo();
 		head=obj.createLL(head,data);
+		
 		System.out.println("head: "+head);
-		for(int i=0;i<n;i++)
+		for(int i=1;i<n;i++)
 		{
 			System.out.println("Enter value for "+(i+1)+"th node: ");
 			data=sc.nextInt();
@@ -52,6 +56,14 @@ public class LLDemo {
 		System.out.println("Link list is :");
 		obj.printLL(head);
 		
+		System.out.println("Enter position to add node: ");
+		int pos=sc.nextInt();
+		System.out.println("Enter data: ");
+		data=sc.nextInt();
+		
+		nwnode=obj.createLL(nwnode,data);
+		obj.addLL(head,nwnode,pos);
+		obj.printLL(head);	
 	}
 	
 	void printLL(Node head) {
@@ -80,6 +92,27 @@ public class LLDemo {
 			p=new Node(data,null);
 			q.setNext(p);
 		}
+		return h;
+	}
+	
+	Node addLL(Node head,Node nwnode,int position) 
+	{
+		Node h=head;
+		Node p=h;
+		Node q=h;
+		int n=0;
+		
+		while(p!=null) 
+		{
+			n++;
+			if(n==position)
+				break;
+			q=p;
+			p=p.getNext();
+		}
+		nwnode.setNext(p);
+		q.setNext(nwnode);
+		
 		return h;
 	}
 }
